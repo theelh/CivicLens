@@ -1,5 +1,5 @@
 import { Link, usePage } from '@inertiajs/react';
-import { BellRingIcon, ChartColumnBigIcon, ChartSplineIcon, FlagIcon,  LayoutGrid, MapIcon, SquareUserRoundIcon } from 'lucide-react';
+import { BadgePlusIcon, BellRingIcon, ChartColumnBigIcon, ChartSplineIcon, FlagIcon,  LayoutGrid, MapIcon, SquareUserRoundIcon, UserRoundCogIcon } from 'lucide-react';
 import { NavFooter } from '@/components/nav-footer';
 import { NavMain } from '@/components/nav-main';
 import { NavUser } from '@/components/nav-user';
@@ -26,35 +26,70 @@ export function AppSidebar() {
         isAdmin            ? [
                 {
                     title: 'Admin Dashboard',
-                    href: dashboard().url,
+                    href: '/admin/dashboard',
                     icon: LayoutGrid,
                 },
+                {
+                        title: 'Report issue',
+                        href: '/admin/reports/submit',
+                        icon: BadgePlusIcon,
+                    },
+                    {
+                        title: 'Analytics',
+                        href: '/admin/analytics',
+                        icon: ChartSplineIcon,
+                    },
+                    {
+                        title: 'Notifcations',
+                        href: '/admin/notifications',
+                        icon: BellRingIcon,
+                    },
+                    {
+                        title: 'Manage Report',
+                        href: '/admin/reports/all',
+                        icon: FlagIcon,
+                    },
+                    {
+                        title: 'Manage Users',
+                        href: '/admin/users',
+                        icon: UserRoundCogIcon,
+                    },
+                    {
+                        title: 'Map View',
+                        href: '/admin/map',
+                        icon: MapIcon,
+                    },
             ]
             : isStaff
                 ? [
                     {
                         title: 'Staff Dashboard',
-                        href: dashboard().url,
+                        href: '/staff/dashboard',
                         icon: LayoutGrid,
                     },
                     {
+                        title: 'Report issue',
+                        href: '/staff/reports/submit',
+                        icon: BadgePlusIcon,
+                    },
+                    {
                         title: 'Analytics',
-                        href: '/analytics',
+                        href: '/staff/analytics',
                         icon: ChartSplineIcon,
                     },
                     {
                         title: 'Notifcations',
-                        href: '/notifications',
+                        href: '/staff/notifications',
                         icon: BellRingIcon,
                     },
                     {
-                        title: 'Report status',
-                        href: '/reportStatus',
+                        title: 'Manage Report',
+                        href: '/staff/reports/all',
                         icon: FlagIcon,
                     },
                     {
                         title: 'Map View',
-                        href: '/mapView',
+                        href: '/staff/map',
                         icon: MapIcon,
                     },
                 ]
@@ -67,22 +102,22 @@ export function AppSidebar() {
                         },
                         {
                             title: 'Your Notifications',
-                            href: '/receivedNotifications',
+                            href: '/notifications',
                             icon: BellRingIcon,
                         },
                         {
                             title: 'Your Reports',
-                            href: '/userReports',
+                            href: '/reports/all',
                             icon: FlagIcon,
                         },
                         {
                             title: 'Report Status',
-                            href: '/userReportsStatus',
+                            href: '/analytics',
                             icon: ChartColumnBigIcon,
                         },
                         {
                             title: 'Explore Map',
-                            href: '/mapView',
+                            href: '/map',
                             icon: MapIcon,
                         },
                     ]
@@ -92,7 +127,7 @@ export function AppSidebar() {
 const footerNavItems: NavItem[] = [
     {
         title: 'Contact Support',
-        href: '/contactSupport',
+        href: '/contact',
         icon: SquareUserRoundIcon,
     },
 ];

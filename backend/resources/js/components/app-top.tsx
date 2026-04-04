@@ -111,15 +111,45 @@ const AppTop: React.FC = ({canRegister = true,
 
           {/* DESKTOP BUTTON */}
           <div className="hidden md:flex items-center">
-            <Link
-                href={register()}
-                target="_blank"
-                className="flex items-center gap-2 justify-between border border-[#c0c0c0] bg-[#2369A4] text-white pr-2 pl-5 py-2 rounded-4xl text-sm">
-              Get startes
-              <span className="border bg-[#2771ad] border-white/15 rounded-xl py-1 px-3">
-                  <ArrowRightIcon size={14} />
-              </span>
-            </Link>
+            {auth.user && auth.user.role == 'admin' ? (
+                <Link
+                    href="/admin/dashboard"
+                    className="flex items-center gap-2 justify-between border border-[#c0c0c0] bg-[#2369A4] text-white pr-2 pl-5 py-2 rounded-4xl text-sm"
+                >
+                    Weclome back Admine
+                </Link>
+            ) : auth.user && auth.user.role == 'staff' ? (
+                    <Link
+                    href="/staff/dashboard"
+                    className="flex items-center gap-2 justify-between border border-[#c0c0c0] bg-[#2369A4] text-white pr-2 pl-5 py-2 rounded-4xl text-sm"
+                >
+                    Weclome back Staff
+                </Link>
+            ) : auth.user && auth.user.role == 'user' ? (
+                    <Link
+                    href="/dashboard"
+                    className="flex items-center gap-2 justify-between border border-[#c0c0c0] bg-[#2369A4] text-white pr-2 pl-5 py-2 rounded-4xl text-sm"
+                >
+                    Weclome back User
+                    </Link>
+                    ) : (
+                        <>
+                    <Link
+                        href={login()}
+                        className="inline-block mx-2 rounded-sm border border-transparent px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#19140035] dark:text-[#EDEDEC] dark:hover:border-[#3E3E3A]"
+                    >
+                        Log in
+                    </Link>
+                    {canRegister && (
+                        <Link
+                            href={register()}
+                            className="inline-block rounded-sm border border-[#19140035] px-5 py-1.5 text-sm leading-normal text-[#1b1b18] hover:border-[#1915014a] dark:border-[#3E3E3A] dark:text-[#EDEDEC] dark:hover:border-[#62605b]"
+                        >
+                            Register
+                        </Link>
+                    )}
+                </>
+            )}
           </div>
 
           {/* MOBILE HAMBURGER */}

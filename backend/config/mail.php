@@ -34,6 +34,7 @@ return [
     |            "failover", "roundrobin"
     |
     */
+    'contact_recipient' => env('CONTACT_RECIPIENT', 'admin@civiclens.ai'),
 
     'mailers' => [
 

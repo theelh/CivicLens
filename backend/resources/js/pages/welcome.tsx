@@ -7,6 +7,7 @@ import type {LucideIcon} from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import AppTop from '@/components/app-top';
 import Footer from '@/components/Footer';
+import Chatbot from '@/components/chatbot';
 
 interface AccordionItem {
     id: number
@@ -319,6 +320,7 @@ const cards = [
     return (
         <>
             <AppTop/>
+            <Chatbot />
             <Head title="Welcome">
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link
@@ -390,13 +392,13 @@ const cards = [
                                         CivicLens AI empowers citizens to report urban issues using AI-powered tools — transforming complaints into actionable insights for municipalities.
                                     </p>
                                     <div className="flex gap-6">
-                                        <a href='#' className="flex items-center shadow-xl shadow-[#2771ad92] gap-4 justify-between bg-[#2369A4] text-white pr-2 pl-6 py-2 rounded-4xl text-md">
+                                        <a href='/contact' className="flex items-center shadow-xl shadow-[#2771ad92] gap-4 justify-between bg-[#2369A4] text-white pr-2 pl-6 py-2 rounded-4xl text-md">
                                             Book A Call
                                             <span className="border bg-[#2771ad] border-white/15 rounded-4xl py-1.5 px-4">
                                             <ArrowRightIcon size={20} />
                                             </span>
                                         </a>
-                                        <a href="#" className="flex items-center gap-4 justify-between border border-[#c0c0c08b] bg-white text-black px-6 py-2 rounded-4xl text-md">
+                                        <a href="/service" className="flex items-center gap-4 justify-between border border-[#c0c0c08b] bg-white text-black px-6 py-2 rounded-4xl text-md">
                                             View Services
                                         </a>
                                     </div>
@@ -547,7 +549,7 @@ const cards = [
                                             </h3>
                                         </div>
                                         <div className="flex items-center">
-                                            <a href="/services" className="flex bg-white shadow-black/15 shadow-xl items-center font-satoshi gap-4 text-[#525252] px-6 py-2 rounded-4xl text-lg font-semibold">
+                                            <a href="/contact" className="flex bg-white shadow-black/15 shadow-xl items-center font-satoshi gap-4 text-[#525252] px-6 py-2 rounded-4xl text-lg font-semibold">
                                             Contact us
                                             <span className="border bg-[#F6F7F8] border-[#c0c0c08b] rounded-4xl py-1.5 px-4">
                                                 <ArrowRightIcon size={20} />

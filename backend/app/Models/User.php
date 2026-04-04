@@ -8,6 +8,9 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
 use Laravel\Passport\HasApiTokens;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Activity;
+use App\Models\Report;
 
 class User extends Authenticatable
 {
@@ -51,4 +54,15 @@ class User extends Authenticatable
             'two_factor_confirmed_at' => 'datetime',
         ];
     }
+
+    public function activities()
+{
+    return $this->hasMany(Activity::class);
+}
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
+    }
+
 }

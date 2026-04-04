@@ -7,6 +7,7 @@ import type {LucideIcon} from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import AppTop from '@/components/app-top';
 import Footer from '@/components/Footer';
+import Chatbot from '@/components/chatbot';
 
 interface AccordionItem {
     id: number
@@ -333,6 +334,7 @@ const cards = [
     return (
         <>
             <AppTop/>
+            <Chatbot />
             <Head title="Welcome">
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link
@@ -553,7 +555,7 @@ const cards = [
                                             </h3>
                                         </div>
                                         <div className="flex items-center">
-                                            <a href="/services" className="flex bg-white shadow-black/15 shadow-xl items-center font-satoshi gap-4 text-[#525252] px-6 py-2 rounded-4xl text-lg font-semibold">
+                                            <a href="/contact" className="flex bg-white shadow-black/15 shadow-xl items-center font-satoshi gap-4 text-[#525252] px-6 py-2 rounded-4xl text-lg font-semibold">
                                             Contact us
                                             <span className="border bg-[#F6F7F8] border-[#c0c0c08b] rounded-4xl py-1.5 px-4">
                                                 <ArrowRightIcon size={20} />

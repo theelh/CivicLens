@@ -30,7 +30,7 @@
             }
         </style>
 
-        <title inertia>{{ config('app.name', 'Laravel') }}</title>
+        <title inertia>{{ config('app.name', 'CivicLens') }}</title>
 
         <link rel="icon" href="{{asset('/icons/CivicLens-favicon.png')}}" sizes="any">
         <link rel="icon" href="{{asset('/icons/CivicLens-favicon.png')}}" type="image/svg+xml">

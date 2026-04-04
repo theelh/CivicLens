@@ -7,6 +7,7 @@ import type {LucideIcon} from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 import AppTop from '@/components/app-top';
 import Footer from '@/components/Footer';
+import Chatbot from '@/components/chatbot';
 
 interface AccordionItem {
     id: number
@@ -34,34 +35,6 @@ export default function About() {
         smoother.paused()
         }
     }, [])
-
-    const slides = [
-        {
-            title: "Economic & Operational Impact",
-            subtitle: "15% to 30% Reduction in Operational Costs",
-            image: "./img/CiviLens-impact-1.jpg",
-        },
-        {
-            title: "Smart City Optimization",
-            subtitle: "20% Increase in Infrastructure Lifespan",
-            image: "./img/CiviLens-impact-2.jpg",
-        },
-        {
-            title: "Citizen Engagement",
-            subtitle: "5% to 10% Increase in Tax Compliance",
-            image: "./img/CiviLens-impact-3.jpg",
-        },
-    ];
-
-    const [current, setCurrent] = useState(0);
-
-    useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrent((prev) => (prev + 1) % slides.length);
-    }, 4000); // 4s
-
-    return () => clearInterval(interval);
-  }, []);
 
 
 
@@ -333,6 +306,7 @@ const cards = [
     return (
         <>
             <AppTop/>
+            <Chatbot />
             <Head title="Welcome">
                 <link rel="preconnect" href="https://fonts.bunny.net" />
                 <link
@@ -385,192 +359,61 @@ const cards = [
 
                             </main>
 
-                            <section className="relative flex z-10 bg-white max-w-340 rounded-[3rem] w-full  mx-auto border border-[#236aa41e] shadow-lg shadow-black/15 overflow-hidden">
+                            <section className="relative flex z-10 py-24  max-w-full rounded-[3rem] w-full overflow-hidden">
                             
                                 {/* Slides */}
                                 <div
-                                    className="flex z-50 transition-transform  max-w-340 duration-700 ease-in-out"
-                                    style={{ transform: `translateX(-${current * 100}%)` }}
+                                    className="flex z-50  transition-transform w-full max-w-340 mx-auto duration-700 ease-in-out"
                                 >
-                                    {slides.map((slide, index) => (
-                                    <div key={index} className="min-w-full">
-                                        <div className="flex rounded-[3rem] p-2 flex-col">
+                                    <div className="min-w-full gap-5 flex flex-col">
+                                        <div className="flex rounded-[3rem] shadow-lg border border-[#236aa41e] shadow-black/15 p-2 bg-white flex-col">
+                                                <img
+                                                className="rounded-[3rem]  w-full object-cover"
+                                                src="/img/CiviLens-impact-2.jpg"
+                                                alt="CiviLens-impact-2"
+                                                />
+                                        </div>
 
-                                        <div className="flex w-full justify-between">
-                                            <div className="flex gap-7 p-4 items-center">
-                                            <h2 className="text-[24px] font-satoshi font-medium">
-                                                {slide.title}
-                                            </h2>
-                                            <p className="text-[16px] font-sans text-[#525252]">
-                                                {slide.subtitle}
-                                            </p>
+                                        <div className="flex gap-5">
+                                            <div className="flex rounded-[3rem] p-2 shadow-lg border border-[#236aa41e] shadow-black/15 bg-white flex-col">
+                                                <img
+                                                className="rounded-[3rem] h-120 w-full object-cover"
+                                                src="/img/about-1.jpg"
+                                                alt="CiviLens-impact-2"
+                                                />
                                             </div>
-
-                                            <a href="/services" className="flex items-center font-satoshi gap-4 bg-white text-[#525252] px-6 py-2 rounded-4xl text-xl font-medium">
-                                            View Services
-                                            <span className="border bg-[#F6F7F8] border-[#c0c0c08b] rounded-4xl py-1.5 px-4">
-                                                <ArrowRightIcon size={20} />
-                                            </span>
-                                            </a>
-                                        </div>
-
-                                        <div className="mt-5">
-                                            <img
-                                            className="rounded-[3rem] h-187 w-full object-cover"
-                                            src={slide.image}
-                                            alt={slide.title}
-                                            />
-                                        </div>
+                                            <div className="flex rounded-[3rem] p-2 shadow-lg border border-[#236aa41e] shadow-black/15 bg-white flex-col">
+                                                <img
+                                                className="rounded-[3rem] h-120 w-full object-cover"
+                                                src="/img/about-2.jpg"
+                                                alt="CiviLens-impact-2"
+                                                />
+                                            </div>
                                         </div>
                                     </div>
-                                    ))}
-                                </div>
-
-                                {/* Pagination */}
-                                <div className="absolute bottom-6 left-1/2 -translate-x-1/2 flex gap-3">
-                                    {slides.map((_, index) => (
-                                    <button
-                                        key={index}
-                                        onClick={() => setCurrent(index)}
-                                        className={`h-2.5 rounded-full transition-all duration-300 ${
-                                        current === index
-                                            ? "w-8 bg-black"
-                                            : "w-2.5 bg-gray-300"
-                                        }`}
-                                    />
-                                    ))}
                                 </div>
                             </section>
-
-                            <main className="w-full flex-col h-full mt-16 pt-14 max-w-full bg-[#F6F7F8] font-sans justify-center">
-                                <div className="flex-col justify-between gap-7">
-                            
-                                    {/* ── STICKY LEFT + SCROLL RIGHT ── */}
-                                    <section
-                                    ref={sectionRef}
-                                    className="flex flex-col lg:flex-row items-start gap-16 max-w-350 mx-auto px-6 pb-32 relative"
-                                    >
-                                    {/* LEFT — sticky panel */}
-                                    <div
-                                        ref={leftRef}
-                                        className="lg:w-1/2 w-full sticky self-start flex flex-col items-start py-16 pr-8"
-                                    >
-                                        <div className="relative">
-                                        {/* Decorative background blob */}
-                                        <div className="absolute -top-12 -left-12 w-64 h-64 rounded-full bg-[#2369A4]/5 blur-3xl pointer-events-none" />
-                            
-                                        <button className="px-4 font-satoshi py-1.5 text-xs border border-[#236aa41e] shadow-lg shadow-[#236aa41e] font-semibold flex items-center gap-2 tracking-wider text-black backdrop-blur-sm uppercase rounded-full">
-                                        <span className="text-[#2369A4] text-xl">•</span>
-                                            Services
-                                        </button>
-                            
-                                        <h2 className="text-[40px] font-satoshi -tracking-wide font-bold mt-6 text-[#171717] leading-[1.1] mb-6">
-                                            What services does
-                                            <br />
-                                            <span className="text-[#2369A4]">our platform provide ?</span>
-                                        </h2>
-                            
-                                        <p className="text-[#585858] text-[18px] leading-relaxed max-w-lg mb-10">
-                                            Our platform combines AI-powered analysis, real-time reporting, and advanced analytics to deliver a complete solution for urban issue management — from detection to resolution.
-                                        </p>
-                            
-                                        {/* Stats row */}
-                                        <div className="flex gap-8">
-                                            {[
-                                            { value: "97%", label: "Detection accuracy" },
-                                            { value: "4×", label: "Faster resolution" },
-                                            { value: "120+", label: "Cities live" },
-                                            ].map((s) => (
-                                            <div key={s.label}>
-                                                <p className="text-3xl font-bold text-[#171717]">{s.value}</p>
-                                                <p className="text-xs text-[#585858] mt-1">{s.label}</p>
-                                            </div>
-                                            ))}
-                                        </div>
-                                        </div>
-                                    </div>
-                            
-                                    {/* RIGHT — scrollable cards + progress line */}
-                                    <div className="lg:w-1/2 w-full flex gap-6 pt-16">
-                                        {/* Progress line track */}
-                                        <div className="hidden lg:flex flex-col items-center pt-3 shrink-0">
-                                        <div  className="relative w-0.5 bg-gray-300 rounded-full overflow-hidden"
-                                            style={{ height: `${cards.length * 290}px` }}>
-                                            <div
-                                            ref={progressLineRef}
-                                            className="absolute top-0 left-0 w-full bg-[#2369A4] origin-top"
-                                            style={{
-                                                height: "100%",
-                                                transform: "scaleY(0)",
-                                                transformOrigin: "top"
-                                            }}
-
-                                            />
-                                        </div>
-                                        </div>
-                            
-                                        {/* Cards stack */}
-                                        <div className="flex flex-col gap-6 flex-1">
-                                        {cards.map((card, i) => (
-                                            <div
-                                            key={card.number}
-                                            ref={(el) => { cardRefs.current[i] = el; }}
-                                            className="group bg-white border border-[#E8EBF0] rounded-2xl p-7 shadow-sm hover:shadow-md hover:border-[#2369A4]/20 transition-all duration-300 relative overflow-hidden"
-                                            >
-                                            {/* Hover accent */}
-                                            <div className="absolute inset-0 bg-linear-to-br from-[#2369A4]/3 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl" />
-                            
-                                            <div className="relative z-10">
-                                                {/* Number + tag row */}
-                                                <div className="flex items-center justify-between mb-4">
-                                                <span className="text-4xl font-bold text-[#2369A4]/15 font-sans">
-                                                    {card.number}
-                                                </span>
-                                                </div>
-                            
-                                                <h4 className="text-xl font-bold text-[#171717] mb-3 leading-snug">
-                                                {card.title}
-                                                </h4>
-                                                <p className="text-[#585858] text-sm leading-relaxed">
-                                                {card.description}
-                                                </p>
-                                                <div className="flex items-center mt-3 gap-3">
-                                                    {
-                                                        card.tag.map((tag) =>(
-                                                            <div className="flex items-center gap-2">
-                                                                <span className="text-[10px] font-bold tracking-[0.15em] uppercase text-[#2369A4] bg-[#2369A4]/8 px-3 py-1 rounded-full">
-                                                                    {tag}
-                                                                </span>
-                                                            </div>
-                                                        ))
-                                                    }
-                                                </div>
-                            
-                                                {/* Bottom accent line */}
-                                                <div className="mt-5 h-0.5 w-8 bg-[#2369A4] rounded-full group-hover:w-16 transition-all duration-300" />
-                                            </div>
-                                            </div>
-                                        ))}
-                                        </div>
-                                    </div>
-                                    </section>
-                            
-                                </div>
-                                </main>
 
                             <section className="bg-[#F6F7F8] max-w-screen w-screen pt-28 mt-0 flex flex-col">
                                 <div className="flex flex-col items-center mx-auto justify-center">
                                     <span className="text-md font-medium flex items-center gap-2 tracking-wider text-[#525252] rounded-full">
                                         <span className="text-[#2369A4] text-3xl">•</span>
-                                        CivicLens
+                                        Story
                                     </span>
-                                    <h3 className="font-satoshi text-center mt-5 -tracking-wide leading-[2.8rem] font-bold text-[40px] text-[#171717]">
-                                        CivicLens makes it simple,
+                                    <h3 className="font-satoshi text-center mt-5 -tracking-[0.1rem] leading-[2.8rem] font-bold text-[40px] text-[#171717]">
+                                        Our Story
                                         <br/>
                                         <span className="text-[#2369A4]">
-                                            and delivers results.
+                                            matters.
                                         </span>
                                     </h3>
+                                    <p className="text-[18px] mt-5 max-w-4xl text-center font-sans text-[#404040]">
+                                        CivicLens AI was created to solve a common problem faced by cities worldwide: inefficient and disconnected issue reporting systems. Citizens often struggle to report problems, while municipalities face delays in identifying and prioritizing them.
+                                        <br /> <br />
+                                        Recognizing this gap, we designed a platform that combines simplicity for users with powerful AI capabilities for decision-makers. Our goal was clear — create a system that not only collects reports but also understands them.
+                                        <br /> <br/>
+                                        Today, CivicLens AI stands as a modern solution that bridges the gap between communities and city authorities, enabling faster responses and more effective urban management.
+                                    </p>
                                 </div>
                                 <div className="grid grid-cols-3 mt-16 gap-5 max-w-340 mx-auto">
                                     {/* card1 */}
@@ -593,6 +436,7 @@ const cards = [
                                     </div>
                                 </div>
                             </section>
+
                             <main className=" w-full flex-col h-full pt-24 max-w-full bg-[#F6F7F8] font-sans justify-center">
                                 <div className="flex-col justify-between gap-7">
                                     <div className="max-w-360 p-8 mx-auto flex justify-between">
@@ -609,7 +453,7 @@ const cards = [
                                             </h3>
                                         </div>
                                         <div className="flex items-center">
-                                            <a href="/services" className="flex bg-white shadow-black/15 shadow-xl items-center font-satoshi gap-4 text-[#525252] px-6 py-2 rounded-4xl text-lg font-semibold">
+                                            <a href="/contact" className="flex bg-white shadow-black/15 shadow-xl items-center font-satoshi gap-4 text-[#525252] px-6 py-2 rounded-4xl text-lg font-semibold">
                                             Contact us
                                             <span className="border bg-[#F6F7F8] border-[#c0c0c08b] rounded-4xl py-1.5 px-4">
                                                 <ArrowRightIcon size={20} />
@@ -673,88 +517,6 @@ const cards = [
                                     </div>
                                 </div>
                             </main>
-                                <section className="bg-[#F6F7F8] max-w-screen w-screen pt-48 mt-0 flex flex-col">
-                                <div className="flex flex-col items-center mx-auto justify-center">
-                                    <span className="text-md font-medium flex items-center gap-2 tracking-wider text-[#525252] rounded-full">
-                                        <span className="text-[#2369A4] text-3xl">•</span>
-                                        Impact & Benefits
-                                    </span>
-                                    <h3 className="font-satoshi text-center mt-5 -tracking-wide leading-[2.8rem] font-bold text-[40px] text-[#171717]">
-                                        Measurable Impact 
-                                        <br/>
-                                        <span className="text-[#2369A4]">
-                                            For Cities and Communities.
-                                        </span>
-                                    </h3>
-                                </div>
-                                <div className=" bg-white p-5 inset-shadow-zinc-200 rounded-[3rem] border border-gray-300  mx-auto max-w-340 mt-16">
-                                    <h2 className="text-center text-3xl font-satoshi text-[#171717] -tracking-wide mb-7 font-bold">For Citizens</h2>
-                                    <div className="grid grid-cols-2 gap-5">
-                                        {/* card1 */}
-                                        <div className="bg-white  flex flex-col shadow-xl gap-3 p-7 rounded-4xl border border-[#8b87873c]">
-                                            <h2 className="text-[32px] text-[#171717] font-satoshi flex items-center gap-3 font-bold">+70% <span className="text-lg">Speed</span></h2>
-                                            <p className="font-satoshi font-medium -tracking-wide text-[#5d636f] text-[24px]">Faster Issue Reporting</p>
-                                            <p className="text-[16px] font-sans text-[#737373]">Citizens can report issues in seconds using photos, voice, or text, eliminating long forms and manual processes. This significantly reduces the time required to submit a complaint and increases overall participation.</p>
-                                        </div>
-                                        {/* card2 */}
-                                        <div className="bg-white flex flex-col shadow-xl gap-3 p-7 rounded-4xl border border-[#8b87873c]">
-                                            <h2 className="text-[32px] text-[#171717] font-satoshi flex items-center gap-3 font-bold">+85% <span className="text-lg">Visibility</span></h2>
-                                            <p className="font-satoshi font-medium -tracking-wide text-[#5d636f] text-[24px]">Real-Time Transparency</p>
-                                            <p className="text-[16px] font-sans text-[#737373]">Users can track their reports in real time, from submission to resolution, ensuring full transparency and building trust between citizens and local authorities.</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="grid grid-cols-2 bg-white p-5 rounded-[3rem] mt-16 gap-5 max-w-340 mx-auto">
-                                        {/* card3 */}
-                                        <div className="bg-white flex flex-col shadow-xl gap-3 p-7 rounded-4xl border border-[#8b87873c]">
-                                            <h2 className="text-[32px] text-[#171717] font-satoshi flex items-center gap-3 font-bold">+60% <span className="text-lg">Participation</span></h2>
-                                            <p className="font-satoshi font-medium -tracking-wide text-[#5d636f] text-[24px]">Improved Community Engagement</p>
-                                            <p className="text-[16px] font-sans text-[#737373]">By simplifying the reporting process, CivicLens AI encourages more citizens to actively contribute to improving their city, creating a stronger sense of community involvement.</p>
-                                        </div>
-                                        {/* card4 */}
-                                        <div className="bg-white flex flex-col shadow-xl gap-3 p-7 rounded-4xl border border-[#8b87873c]">
-                                            <h2 className="text-[32px] text-[#171717] font-satoshi flex items-center gap-3 font-bold">+75% <span className="text-lg">Efficiency</span></h2>
-                                            <p className="font-satoshi font-medium -tracking-wide text-[#5d636f] text-[24px]">Better Communication with Authorities</p>
-                                            <p className="text-[16px] font-sans text-[#737373]">The platform creates a direct and structured communication channel between citizens and municipalities, reducing misunderstandings and improving response clarity.</p>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                {/* Second section */}
-
-                                <div className=" bg-white p-5 rounded-[3rem] border border-gray-300 mx-auto max-w-340 mt-16">
-                                    <h2 className="text-center text-3xl font-satoshi text-[#171717] -tracking-wide mb-7 font-bold">For Municipalities</h2>
-                                    <div className="grid grid-cols-2 gap-5">
-                                        {/* card1 */}
-                                        <div className="bg-white flex flex-col shadow-xl gap-3 p-7 rounded-4xl border border-[#8b87873c]">
-                                            <h2 className="text-[32px] text-[#171717] font-satoshi flex items-center gap-3 font-bold">+50% <span className="text-lg">Resolution Time</span></h2>
-                                            <p className="font-satoshi font-medium -tracking-wide text-[#5d636f] text-[24px]">Faster Response Time</p>
-                                            <p className="text-[16px] font-sans text-[#737373]">Automated categorization and prioritization allow city teams to respond faster, reducing delays and improving overall service efficiency.</p>
-                                        </div>
-                                        {/* card2 */}
-                                        <div className="bg-white flex flex-col shadow-xl gap-3 p-7 rounded-4xl border border-[#8b87873c]">
-                                            <h2 className="text-[32px] text-[#171717] font-satoshi flex items-center gap-3 font-bold">+65% <span className="text-lg">Optimization</span></h2>
-                                            <p className="font-satoshi font-medium -tracking-wide text-[#5d636f] text-[24px]">Smarter Resource Allocation</p>
-                                            <p className="text-[16px] font-sans text-[#737373]">With AI-driven insights, municipalities can allocate teams and resources more effectively, focusing on high-priority issues and critical areas.</p>
-                                        </div>
-                                    </div>
-
-                                    <div className="grid grid-cols-2 bg-white p-5 rounded-[3rem] mt-16 gap-5 max-w-340 mx-auto">
-                                        {/* card3 */}
-                                        <div className="bg-white flex flex-col shadow-xl gap-3 p-7 rounded-4xl border border-[#8b87873c]">
-                                            <h2 className="text-[32px] text-[#171717] font-satoshi flex items-center gap-3 font-bold">+80% <span className="text-lg">Insight Accuracy</span></h2>
-                                            <p className="font-satoshi font-medium -tracking-wide text-[#5d636f] text-[24px]">Data-Driven Decision Making</p>
-                                            <p className="text-[16px] font-sans text-[#737373]">Advanced analytics provide actionable insights into trends, recurring problems, and performance metrics, helping authorities make informed decisions.</p>
-                                        </div>
-                                        {/* card4 */}
-                                        <div className="bg-white flex flex-col shadow-xl gap-3 p-7 rounded-4xl border border-[#8b87873c]">
-                                            <h2 className="text-[32px] text-[#171717] font-satoshi flex items-center gap-3 font-bold">+90% <span className="text-lg">Organization</span></h2>
-                                            <p className="font-satoshi font-medium -tracking-wide text-[#5d636f] text-[24px]">Centralized Issue Management</p>
-                                            <p className="text-[16px] font-sans text-[#737373]">All reports are managed in a single dashboard, allowing teams to track, filter, and resolve issues efficiently without scattered systems.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </section>
 
                             {/* FAQ */}
 
@@ -763,8 +525,6 @@ const cards = [
                                 className="w-full pt-36 bg-[#F6F7F8] font-sans"
                                 >
                                 <div className="max-w-350 mx-auto px-6 pb-32">
-                            
-                                    
                             
                                     {/* Two-column layout */}
                                     <div className="flex flex-col lg:flex-row items-start gap-16">
@@ -899,7 +659,7 @@ const cards = [
                                     </div>
                                     </div>
                                 </div>
-                                </section>
+                            </section>
                         </div>
                         <Footer/>
                     </div>

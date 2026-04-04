@@ -8,6 +8,9 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Validation\Rules\Password;
 use Laravel\Passport\Passport;
+use App\Models\Notification;
+use Illuminate\Support\Facades\Auth;
+use Inertia\Inertia;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -24,6 +27,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        Inertia::share('auth.notificationsCount', function () {
+        if (!Auth::check()) return 0;
+
+        return Notification::where('user_id', Auth::id())
+            ->where('is_read', false)
+            ->count();
+    });
         $this->configureDefaults();
         //Passport::routes();
     }
