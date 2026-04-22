@@ -5,8 +5,8 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef, useState } from "react";
 import AppTop from "@/components/app-top";
-import Footer from "@/components/Footer";
 import Chatbot from "@/components/chatbot";
+import Footer from "@/components/Footer";
 
 const API_URL = "http://localhost:8000/api/sentContact";
 

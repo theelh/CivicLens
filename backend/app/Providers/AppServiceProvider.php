@@ -35,7 +35,12 @@ class AppServiceProvider extends ServiceProvider
             ->count();
     });
         $this->configureDefaults();
-        //Passport::routes();
+
+        // Register policies and Passport routes
+        
+        Passport::loadKeysFrom(storage_path('oauth'));
+        Passport::tokensExpireIn(now()->addDays(15));
+        Passport::refreshTokensExpireIn(now()->addDays(30));
     }
 
     /**

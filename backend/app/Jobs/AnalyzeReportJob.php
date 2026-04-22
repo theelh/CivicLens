@@ -60,8 +60,10 @@ class AnalyzeReportJob implements ShouldQueue
                         $confidence = $score;
                         $mapped = $this->mapCategoryToId($categoryLabel);
                         if ($mapped) $categoryId = $mapped;
-                        [$severity] = $this->classifySeverity($imageCaption);
+                        $severity = $this->classifySeverity($imageCaption);
+                        Log::info('Severity detected: ' . ($severity ?? 'null'));
                     }
+                    $severity = $severity ?? 'medium';
                 }
             }
 
@@ -108,7 +110,6 @@ class AnalyzeReportJob implements ShouldQueue
                 ]
             );
             
-
             // ── 6. Save to reports table ──────────────────────────────────────
             $report->update([
                 'category_id'   => $categoryId,
@@ -227,32 +228,44 @@ class AnalyzeReportJob implements ShouldQueue
     }
 
     // ✅ BART MNLI — router.huggingface.co/models/... (JSON body)
-    private function classifySeverity(string $text): array
-    {
-        $labels = ['high risk', 'medium issue', 'low issue'];
-        $map    = ['high risk' => 'high', 'medium issue' => 'medium', 'low issue' => 'low'];
-        try {
-            $res = Http::withHeaders([
-                'Authorization' => 'Bearer ' . config('services.huggingface.token'),
-                'Content-Type'  => 'application/json',
-            ])->timeout(60)
-              ->post(self::BART_URL, [
-                  'inputs'     => mb_substr($text, 0, 512),
-                  'parameters' => ['candidate_labels' => $labels],
-              ]);
+    private function classifySeverity(string $text): string
+{
+    $labels = ['high risk', 'medium issue', 'low issue'];
+    $map    = [
+        'high risk' => 'high',
+        'medium issue' => 'medium',
+        'low issue' => 'low'
+    ];
 
-            if (!$res->successful()) {
-                return ['low'];
-            }
+    try {
+        $res = Http::withHeaders([
+            'Authorization' => 'Bearer ' . config('services.huggingface.token'),
+            'Content-Type'  => 'application/json',
+        ])
+        ->timeout(60)
+        ->post(self::BART_URL, [
+            'inputs'     => mb_substr($text, 0, 512),
+            'parameters' => ['candidate_labels' => $labels],
+        ]);
 
-            $data  = $res->json();
-            $label = $data['labels'][0] ?? 'low issue';
-            return [$map[$label] ?? 'low'];
-        } catch (\Exception $e) {
-            Log::warning("classifySeverity failed: {$e->getMessage()}");
-            return ['low'];
+        if (!$res->successful()) {
+            return 'low';
         }
+
+        $data  = $res->json();
+
+        Log::info('HF severity raw response', $data); // 👈 DEBUG IMPORTANT
+
+        $label = $data['labels'][0] ?? 'low issue';
+
+        return $map[$label] ?? 'low';
+
+    } catch (\Exception $e) {
+        Log::warning("classifySeverity failed: {$e->getMessage()}");
+        return 'low';
     }
+}
+
 
     // ✅ Whisper — router.huggingface.co/models/... (raw binary body)
     private function transcribeAudio(string $path): ?string
