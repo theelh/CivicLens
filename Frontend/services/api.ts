@@ -1,7 +1,7 @@
 import axios from 'axios';
 import * as SecureStore from 'expo-secure-store';
 
-const API_BASE_URL = 'http://192.168.1.14:8000/api'; // Updated for iOS simulator
+const API_BASE_URL = 'http://your-WIFI-IP:8000/api'; // Updated for iOS simulator, replace your-WIFI-IP by your wifi ip adresse to connecte expo application with your project
 // Use 'http://10.0.2.2:8000/api' for Android emulator
 
 const api = axios.create({
