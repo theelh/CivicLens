@@ -21,7 +21,7 @@
 
 <br/>
 
-[**Live Demo**](https://civiclens.example.com) · [**API Docs**](https://civiclens.example.com/docs) · [**Report Bug**](https://github.com/yourusername/civiclens/issues) · [**Request Feature**](https://github.com/yourusername/civiclens/issues)
+ [**Report Bug**](https://github.com/theelh/civiclens/issues) · [**Request Feature**](https://github.com/theelh/civiclens/issues)
 
 </div>
 
@@ -593,7 +593,7 @@ This project is licensed under the **MIT License** — see the [LICENSE](LICENSE
 
 <br/>
 
-[![GitHub Stars](https://img.shields.io/github/stars/yourusername/civiclens?style=social)](https://github.com/yourusername/civiclens)
-[![GitHub Forks](https://img.shields.io/github/forks/yourusername/civiclens?style=social)](https://github.com/yourusername/civiclens)
+[![GitHub Stars](https://img.shields.io/github/stars/yourusername/civiclens?style=social)](https://github.com/theelh/civiclens)
+[![GitHub Forks](https://img.shields.io/github/forks/yourusername/civiclens?style=social)](https://github.com/theelh/civiclens)
 
 </div>
