@@ -227,22 +227,6 @@ User submits report
                    └────────────────────────┘
 ```
 
----
-
-## 📸 Screenshots
-
-> *Coming soon — add screenshots to `/docs/screenshots/` and update paths below*
-
-| Web Dashboard | Report Submit | Map View |
-|---|---|---|
-| ![Dashboard](docs/screenshots/dashboard.png) | ![Submit](docs/screenshots/submit.png) | ![Map](docs/screenshots/map.png) |
-
-| Mobile Home | Report Detail | AI Analysis |
-|---|---|---|
-| ![Mobile Home](docs/screenshots/mobile-home.png) | ![Detail](docs/screenshots/detail.png) | ![AI](docs/screenshots/ai.png) |
-
----
-
 ## 🚀 Getting Started
 
 ### Prerequisites
